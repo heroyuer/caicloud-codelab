@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: k8strain
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: nginx
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - image: index.caicloud.io/caicloud/nginx:1.9.7
+        name: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        livenessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /index.html
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 10
+        readinessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /index.html
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 10
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: nginx-storage
+          mountPath: /usr/share/nginx/html/
+      restartPolicy: Always
+      volumes:
+      - name: nginx-storage
+        persistentVolumeClaim:
+          claimName: k8strain-files-pvc

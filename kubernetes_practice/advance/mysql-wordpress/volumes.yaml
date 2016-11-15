@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 4096Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 172.23.30.63
+    path: "/mnt/vol01/caicloud/mysql-pv"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wordpress-pv
+spec:
+  capacity:
+    storage: 4096Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 172.23.30.63
+    path: "/mnt/vol01/caicloud/wordpress-pv"
