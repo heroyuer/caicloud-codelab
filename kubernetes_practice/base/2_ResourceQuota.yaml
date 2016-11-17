@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: k8strain-quota
+  namespace: k8strain
+spec:
+  hard:
+    # Across all pods in a non-terminal state, the sum of CPU requests cannot exceed this value.
+    cpu: "16"
+    # Across all pods in a non-terminal state, the sum of memory requests cannot exceed this value.
+    memory: 32Gi
+    # Across all pods in a non-terminal state, the sum of CPU limits cannot exceed this value.
+    limits.cpu: "16"
+    #	Across all pods in a non-terminal state, the sum of memory limits cannot exceed this value.
+    limits.memory: 32Gi
+
