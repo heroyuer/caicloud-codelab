@@ -28,9 +28,9 @@ sudo bash -c "echo 12582912 > /sys/fs/cgroup/memory/test_parent/memory.limit_in_
 sudo bash -c "echo 12582912 > /sys/fs/cgroup/memory/test_parent/memory.memsw.limit_in_bytes"
 ```
 
-build and run `mem_limit.c` in two terminals:
+build and run `cg_mem.c` in two terminals:
 ```
-gcc mem_limit.c
+gcc cg_mem.c
 sudo cgexec -g memory:/test_parent/child1 ./a.out
 sudo cgexec -g memory:/test_parent/child2 ./a.out
 ```
