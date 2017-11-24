@@ -10,7 +10,7 @@ int main(void)
   int i;
   char *p;
 
-  // Loop 100 times to consume 40MB memory.
+  // Loop 40 times to consume 40MB memory.
   for (i = 0; i < 40; ++i) {
     if ((p = malloc(1<<20)) == NULL) {
       printf("malloc failed at %d MB\n", i);
