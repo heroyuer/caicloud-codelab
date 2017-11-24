@@ -1047,6 +1047,13 @@ kubectl apply -f http://ozqvc9zbu.bkt.clouddn.com/canal-rbrc.yaml
 kubectl apply -f http://ozqvc9zbu.bkt.clouddn.com/canal.yaml
 ```
 
+Overseas:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/canal/master/k8s-install/1.7/rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/canal/master/k8s-install/1.7/canal.yaml
+```
+
 To verify that pod network works properly, run `kubectl get pods -n kube-system`, you should see
 following results:
 
@@ -1063,6 +1070,12 @@ is as simple as creating a set of Pods.
 
 ```
 kubectl apply -f http://ozqvc9zbu.bkt.clouddn.com/kube-dns.yaml
+```
+
+Overseas:
+
+```
+kubectl create -f https://storage.googleapis.com/kubernetes-the-hard-way/kube-dns.yaml
 ```
 
 To verify DNS is working properly, we can run a busybox Pod and inspect the result of nslookup.
